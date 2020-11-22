@@ -4,10 +4,10 @@ using System.Text;
 
 public class Stat : IComparer<Stat>
 {
-    public float maxhp, atk, mvspd, atkrng, atkspd, beauty, pow;
+    public float maxhp, atk, mvspd, atkrng, atkspd, beauty, pow, def;
 
     public Stat(){ }
-    public Stat(float maxhp, float beauty, float pow, float atk, float mvspd, float atkrng, float atkspd)
+    public Stat(float maxhp, float beauty, float pow, float atk, float mvspd, float atkrng, float atkspd, float def)
     {
         this.maxhp = maxhp;
         this.atk = atk;
@@ -16,6 +16,7 @@ public class Stat : IComparer<Stat>
         this.atkspd = atkspd;
         this.beauty = beauty;
         this.pow = pow;
+        this.def = def;
     }
     public Stat(Stat s)
     {
@@ -26,6 +27,7 @@ public class Stat : IComparer<Stat>
         this.atkspd = s.atkspd;
         this.beauty = s.beauty;
         this.pow = s.pow;
+        this.def = s.def;
     }
 
     static public Stat operator +(Stat a, Stat b)
@@ -37,7 +39,8 @@ public class Stat : IComparer<Stat>
                 a.atk + b.atk,
                 a.mvspd + b.mvspd,
                 a.atkrng + b.atkrng,
-                a.atkspd + b.atkspd
+                a.atkspd + b.atkspd,
+                a.def + b.def
             );
     }
     static public Stat operator -(Stat a, Stat b)
@@ -49,7 +52,8 @@ public class Stat : IComparer<Stat>
                 a.atk - b.atk,
                 a.mvspd - b.mvspd,
                 a.atkrng - b.atkrng,
-                a.atkspd - b.atkspd
+                a.atkspd - b.atkspd,
+                a.def - b.def
             );
     }
     public override string ToString()
@@ -72,6 +76,7 @@ public class Stat : IComparer<Stat>
         else if (showall) sb.AppendFormat("아름다움: {0:0.0#}\n", beauty);
 
         if (showall || pow != 0) sb.AppendFormat("힘: {0:0.0#}", pow);
+        if (showall || def != 0) sb.AppendFormat("방어력: {0:0.0#}", def);
 
 
         return sb.ToString();
@@ -95,7 +100,39 @@ public class Stat : IComparer<Stat>
         if (tmp.atkspd < 0) return -1;
         else if (tmp.atkspd > 0) return 1;
 
+        if (tmp.beauty < 0) return -1;
+        else if (tmp.beauty > 0) return 1;
+
+        if (tmp.pow < 0) return -1;
+        else if (tmp.pow > 0) return 1;
+
+        if (tmp.def < 0) return -1;
+        else if (tmp.atkspd > 0) return 1;
+
         return 0;
+    }
+    bool IsGreaterThen(Stat a)
+    {
+        Stat cmp = this - a;
+        if (cmp.maxhp <= 0) return false;
+        if (cmp.atk <= 0) return false;
+        if (cmp.mvspd <= 0) return false;
+        if (cmp.atkrng <= 0) return false;
+        if (cmp.atkspd <= 0) return false;
+
+        if (cmp.beauty != 0)
+        {
+            if (this.beauty < 0 && a.beauty > 0) return false;
+            if (this.beauty > 0 && a.beauty < 0) return false;
+            if (Math.Abs(this.beauty) < Math.Abs(a.beauty)) return false;
+        }
+
+
+        if (cmp.pow < 0) return false;
+
+        if (cmp.def < 0) return false;
+
+        return true;
     }
 }
 public class Item : IComparer<Item>

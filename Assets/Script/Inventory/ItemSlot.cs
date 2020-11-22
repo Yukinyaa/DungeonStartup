@@ -15,13 +15,16 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerCl
     public Item item;
     public bool isEquipmentSlot = false;
     public Item.ItemType typeRestriction;
+    public bool isImgOnly = false;
     
     public void Init(Sprite backgroundSprite, Sprite itemSprite, InventoryUIManager parent, Item ie, bool isActiveSlot = false)
     {
         backgroundImage.sprite = backgroundSprite;
         itemImage.sprite = itemSprite;
         this.parent = parent;
-        this.item = ie;
+        this.item = ie
+            
+            ;
         this.isEquipmentSlot = isActiveSlot;
         //if(isActiveSlot == false)
         //    gameObject.SetActive(ie == null ? false : true);
@@ -29,12 +32,14 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerCl
 
     public void OnDrag(PointerEventData data)
     {
+        if (isImgOnly) return;
         itemImage.transform.parent = parent.transform;
         itemImage.transform.position = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData data)
     {
+        if (isImgOnly) return;
         itemImage.transform.SetParent(this.transform, true);
         itemImage.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 
@@ -56,7 +61,6 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerCl
     //from: https://answers.unity.com/questions/1009987/detect-canvas-object-under-mouse-because-only-some.html?_ga=2.85083865.1727764624.1593864048-1629740874.1572570134
     public List<RaycastResult> RaycastMouse()
     {
-
         PointerEventData pointerData = new PointerEventData(EventSystem.current)
         {
             pointerId = -1,
@@ -74,6 +78,7 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerCl
 
     public void OnPointerClick(PointerEventData data)
     {
+        if (isImgOnly) return;
         if (data.button == PointerEventData.InputButton.Right)
         {
             if (this.isEquipmentSlot == true)

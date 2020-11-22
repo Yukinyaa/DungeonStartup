@@ -14,7 +14,8 @@ public class InventoryManager : MonoBehaviour
 
     public void Start()
     {
-        AddToInventory(ItemDB.Items.First(a=>a.codeName =="Head1"));
+        AddToInventory(ItemDB.Items.First(a => a.codeName == "Head1"));
+        AddToInventory(ItemDB.Items.First(a => a.codeName == "Body1"));
     }
     public void AddToInventory(Item i)
     {
