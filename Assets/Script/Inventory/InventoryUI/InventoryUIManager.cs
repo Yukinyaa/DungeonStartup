@@ -17,7 +17,8 @@ public class InventoryUIManager : MonoBehaviour
     Transform inventoryContent, activeItemContent;
     [SerializeField]
     TextMeshProUGUI statSumUI;
-
+    [SerializeField]
+    TextMeshProUGUI moneyText;
 
     [SerializeField]
     ItemInfoUI ui;
@@ -48,7 +49,7 @@ public class InventoryUIManager : MonoBehaviour
     {
         inventorySlots = inventorySlots ?? new List<ItemSlot>(inventoryContent.GetComponentsInChildren<ItemSlot>());
         equipItemSlots = equipItemSlots ?? new List<ItemSlot>(activeItemContent.GetComponentsInChildren<ItemSlot>());
-
+        moneyText.text = "보유 재화: " + invManager.money.ToString();
         while (inventorySlots.Count < 10)
         {
             NewSlot();
@@ -65,7 +66,7 @@ public class InventoryUIManager : MonoBehaviour
         
         for (int i = 0; i < inventory.Count; i++)
         {
-            if (inventorySlots.Count < i)
+            if (inventorySlots.Count <= i)
                 NewSlot();
             SetSlot(inventorySlots[i], inventory[i], false);
         }

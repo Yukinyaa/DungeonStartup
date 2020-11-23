@@ -10,7 +10,7 @@ public class InventoryManager : MonoBehaviour
     public List<Item> inventory = new List<Item>();
     public List<Item> equppedItems = new List<Item>();
     public InventoryUIManager ui;
-    public float money;
+    public float money = 100000;
 
     public void Start()
     {

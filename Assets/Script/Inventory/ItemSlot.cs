@@ -22,9 +22,7 @@ public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerCl
         backgroundImage.sprite = backgroundSprite;
         itemImage.sprite = itemSprite;
         this.parent = parent;
-        this.item = ie
-            
-            ;
+        this.item = ie;
         this.isEquipmentSlot = isActiveSlot;
         //if(isActiveSlot == false)
         //    gameObject.SetActive(ie == null ? false : true);
