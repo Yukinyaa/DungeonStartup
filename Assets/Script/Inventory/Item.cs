@@ -149,7 +149,7 @@ public class Item : IComparer<Item>
     public enum ItemType
     {
         none,
-        head, body, arm, leg, heart, weapon
+        head, body, arm, leg, shield, weapon
     }
     public enum CompareMode
     {
