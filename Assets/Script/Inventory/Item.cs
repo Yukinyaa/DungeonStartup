@@ -150,7 +150,7 @@ public class Item
     public enum ItemType
     {
         none,
-        head, body, arm, leg, shield, weapon
+        head, body, leg, shield, weapon
     }
     public enum CompareMode
     {
@@ -169,9 +169,9 @@ public class Item
     public ItemType type;
     public Stat stat;
 
-    public Item(Rairity rairity, string codename, string nameText, string flavorText, ItemType type, Stat stat)
+    public Item(string codename, string nameText, string flavorText, ItemType type, Stat stat)
     {
-        this.rairity = rairity;
+        this.rairity  = Rairity.normal;
         this.codeName = codename;
         this.nameText = nameText;
         this.flavorText = flavorText;

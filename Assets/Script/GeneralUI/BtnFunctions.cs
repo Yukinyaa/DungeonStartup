@@ -63,8 +63,7 @@ public class BtnFunctions : MonoBehaviour
                 break;
             case BtnType.GoToBattle:
                 eq = InventoryManager.Instance.EquippedItems;
-                if (eq.Any(a=>a.type == Item.ItemType.arm)&&
-                    eq.Any(a => a.type == Item.ItemType.body) &&
+                if (eq.Any(a => a.type == Item.ItemType.body) &&
                     eq.Any(a => a.type == Item.ItemType.head) &&
                     eq.Any(a => a.type == Item.ItemType.leg) &&
                     eq.Any(a => a.type == Item.ItemType.weapon) 
@@ -73,13 +72,10 @@ public class BtnFunctions : MonoBehaviour
                 break;
             case BtnType.GoToDelever:
                 eq = InventoryManager.Instance.EquippedItems;
-                if (QuestManager.Instance.ActivatedQuest.enemies == null 
-                    || UISupervisor.Instance.CurrentView == UISupervisor.UIViews.Battle )
-                    if (eq.Any(a => a.type == Item.ItemType.arm) &&
-                    eq.Any(a => a.type == Item.ItemType.body) &&
+                if (QuestManager.Instance.ActivatedQuest.enemies == null || UISupervisor.Instance.CurrentView == UISupervisor.UIViews.Battle )
+                    if(eq.Any(a => a.type == Item.ItemType.body) &&
                     eq.Any(a => a.type == Item.ItemType.head) &&
-                    eq.Any(a => a.type == Item.ItemType.leg)
-                    )
+                    eq.Any(a => a.type == Item.ItemType.leg))
                         UISupervisor.Instance.ActivateUI(UISupervisor.UIViews.ConfirmDelever);
                 break;
 
