@@ -18,7 +18,7 @@ public class InventoryUIManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI statSumUI;
     [SerializeField]
-    TextMeshProUGUI moneyText;
+    TextMeshProUGUI moneyText, condText;
 
     [SerializeField]
     ItemInfoUI ui;
@@ -56,7 +56,6 @@ public class InventoryUIManager : MonoBehaviour
         }
 
 
-
         foreach (var slot in inventorySlots)
         {
             slot.Init(blankSlot, blankSlot, this, null);
@@ -85,8 +84,17 @@ public class InventoryUIManager : MonoBehaviour
                     sum = a + sum
                 );
         statSumUI.text = statSum.ToString(true);
+        condText.text = QuestManager.Instance.ActivatedQuest?.CondToString(statSum);
 
 
+    }
+
+    [SerializeField]
+    Button toBattle, toDelever;
+    internal void EnableBtl(bool v)
+    {
+        toBattle.interactable = v;
+        toDelever.interactable = !v;
     }
 
     internal void EquipItem(ItemSlot from)

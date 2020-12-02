@@ -33,13 +33,16 @@ public class QuestManager : Singleton<QuestManager>
         if (q == null) return;
         ActivatedQuest = q;
 
-        //change "scene"
         InventoryManager.Instance.equippedItems = new List<Item>(q.startingbody);
         InventoryManager.Instance.ui.RefreshUI();
 
-        
-        
-        
+        UISupervisor.Instance.ActivateUI(UISupervisor.UIViews.Assemble);
+
+        if (q.enemies == null)
+            InventoryManager.Instance.ui.EnableBtl(false);
+        else
+            InventoryManager.Instance.ui.EnableBtl(true);
+
 
         //activate finish buttons
 

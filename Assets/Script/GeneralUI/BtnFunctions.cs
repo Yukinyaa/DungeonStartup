@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Linq;
 using DG.Tweening;
 
 public class BtnFunctions : MonoBehaviour
@@ -18,7 +19,10 @@ public class BtnFunctions : MonoBehaviour
         LoadQuickSave,
         QuickSave,
         HideThis,
-        ShowThis
+        ShowThis,
+        GoToBattle,
+        GoToDelever,
+        GoToAssemble
     }
     public BtnType function;
 
@@ -44,6 +48,7 @@ public class BtnFunctions : MonoBehaviour
     }
     public void OnClick()
     {
+        System.Collections.Generic.IReadOnlyList<Item> eq;
         switch (function)
         {
             case BtnType.HideThis:
@@ -52,6 +57,30 @@ public class BtnFunctions : MonoBehaviour
             case BtnType.ShowThis:
                 arg_transform.transform.DOLocalMoveX(-10, 1)
                     .OnComplete(() => arg_transform.DOLocalMoveX(0, 0.5f));
+                break;
+            case BtnType.GoToAssemble:
+                UISupervisor.Instance.ActivateUI(UISupervisor.UIViews.Assemble);
+                break;
+            case BtnType.GoToBattle:
+                eq = InventoryManager.Instance.EquippedItems;
+                if (eq.Any(a=>a.type == Item.ItemType.arm)&&
+                    eq.Any(a => a.type == Item.ItemType.body) &&
+                    eq.Any(a => a.type == Item.ItemType.head) &&
+                    eq.Any(a => a.type == Item.ItemType.leg) &&
+                    eq.Any(a => a.type == Item.ItemType.weapon) 
+                    )
+                    UISupervisor.Instance.ActivateUI(UISupervisor.UIViews.Battle);
+                break;
+            case BtnType.GoToDelever:
+                eq = InventoryManager.Instance.EquippedItems;
+                if (QuestManager.Instance.ActivatedQuest.enemies == null 
+                    || UISupervisor.Instance.CurrentView == UISupervisor.UIViews.Battle )
+                    if (eq.Any(a => a.type == Item.ItemType.arm) &&
+                    eq.Any(a => a.type == Item.ItemType.body) &&
+                    eq.Any(a => a.type == Item.ItemType.head) &&
+                    eq.Any(a => a.type == Item.ItemType.leg)
+                    )
+                        UISupervisor.Instance.ActivateUI(UISupervisor.UIViews.ConfirmDelever);
                 break;
 
         }
