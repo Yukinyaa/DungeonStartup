@@ -14,8 +14,8 @@ public class InventoryManager : Singleton<InventoryManager>
 
     public void Start()
     {
-        AddToInventory(ItemDB.Items.First(a => a.codeName == "Head1"));
-        AddToInventory(ItemDB.Items.First(a => a.codeName == "Body1"));
+        foreach(Item i in ItemDB.Items)
+            AddToInventory(i);
     }
     public void AddToInventory(Item i)
     {
@@ -26,7 +26,7 @@ public class InventoryManager : Singleton<InventoryManager>
     {
         if (equippedItems.Any(eqItem => eqItem.type == i.type))
         {
-            Debug.LogError("Assertion Failed, Tried to equip same item");
+            //Debug.LogError("Assertion Failed, Tried to equip same item");
             return false;
         }
         

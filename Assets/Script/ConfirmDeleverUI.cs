@@ -8,15 +8,24 @@ using System.Linq;
 
 public class ConfirmDeleverUI : Singleton<ConfirmDeleverUI>
 {
-    Button accept, deny;
+    [SerializeField]
+    Button accept;
+    [SerializeField]
     TextMeshProUGUI title, sub, cond;
+    public void Start()
+    {
+        accept.onClick.AddListener(Accept);
+    }
     public void Accept()
     {
         var quest = QuestManager.Instance.ActivatedQuest;
         InventoryManager.Instance.money += quest.rewardMoney;
-        
+        InventoryManager.Instance.equippedItems = new List<Item>();
+        InventoryManager.Instance.ui.RefreshUI();
+        UISupervisor.Instance.ActivateUI(UISupervisor.UIViews.Quest);
+        QuestManager.Instance.Init();
     }
-    public void Init()
+    public void Refresh()
     {
         var stat = (from item in InventoryManager.Instance.equippedItems select item.stat)
                         .Aggregate(new Stat(), (a, b) => a + b);
@@ -28,6 +37,9 @@ public class ConfirmDeleverUI : Singleton<ConfirmDeleverUI>
         else
             accept.enabled = true;
 
+        title.text = quest.title;
+        sub.text = quest.subtitle;
+        cond.text = quest.CondToString(stat);
         
     }
 

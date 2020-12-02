@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,22 +9,23 @@ public class QuestManager : Singleton<QuestManager>
     List<Quest> quests = new List<Quest>();
     public Quest ActivatedQuest { get; private set; }
 
-    void AddRandomQuestUntil3()
+    public void Init()
     {
+        ActivatedQuest = null;
         while (quests.Count < 3)
         {
-            var rndQuest = QuestDB.Quests.RandomItem();
-            if (!quests.Exists(q=>q==rndQuest)) 
+            Quest rndQuest = QuestDB.Quests.RandomItem();
+            if (!quests.Exists(q => q == rndQuest))
             {
                 quests.Add(rndQuest);
             }
         }
-        
+        SelectQuestUI.Instance.UpdateUI();
     }
     // Start is called before the first frame update
     void Start()
     {
-        AddRandomQuestUntil3();
+        Init();
         SelectQuestUI.Instance.UpdateUI();
     }
 
@@ -32,6 +34,7 @@ public class QuestManager : Singleton<QuestManager>
     {
         if (q == null) return;
         ActivatedQuest = q;
+        quests.Remove(q);
 
         InventoryManager.Instance.equippedItems = new List<Item>(q.startingbody);
         InventoryManager.Instance.ui.RefreshUI();

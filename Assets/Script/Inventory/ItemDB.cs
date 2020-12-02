@@ -61,7 +61,7 @@ public static class ItemDB
                 "KnightLeg",
                 "인간 기사의 다리",
                 "신념을 받드는 다리.",
-                Item.ItemType.body,
+                Item.ItemType.leg,
                 new Stat()
                 {
                     atk = 20,
@@ -108,7 +108,7 @@ public static class ItemDB
                 "OrkLeg",
                 "오크 전사의 다리",
                 "간신히 숨겨진 조급함.",
-                Item.ItemType.body,
+                Item.ItemType.leg,
                 new Stat()
                 {
                     atk = 30,
@@ -155,7 +155,7 @@ public static class ItemDB
                 "ElfLeg",
                 "엘프 탐험가의 다리",
                 "도난 당한 세계수의 가지를 찾는 중.",
-                Item.ItemType.body,
+                Item.ItemType.leg,
                 new Stat()
                 {
                     atk = 10,
@@ -202,7 +202,7 @@ public static class ItemDB
                 "SeletonLeg",
                 "해골 암살자의 다리",
                 "부들부들.",
-                Item.ItemType.body,
+                Item.ItemType.leg,
                 new Stat()
                 {
                     atk = 20,
