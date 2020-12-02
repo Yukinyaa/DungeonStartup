@@ -16,7 +16,6 @@ public class PlayerController: MonoBehaviour
     Animator anim;                      // Animator
     AudioSource audioSource;            // AudioSource
     Rigidbody2D rigid;                  // RigidBody2D
-    SpriteRenderer spriteRenderer;      // SpriteRenderer
     public Image hpBar;                 // HP_Bar
     GameManager manager;
 
@@ -42,7 +41,6 @@ public class PlayerController: MonoBehaviour
         anim            = GetComponent<Animator>();
         audioSource     = GetComponent<AudioSource>();
         rigid           = GetComponent<Rigidbody2D>();
-        spriteRenderer  = GetComponent<SpriteRenderer>();
 
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
@@ -63,7 +61,7 @@ public class PlayerController: MonoBehaviour
 
             // 애니메이션 재생
             anim.SetBool("Walking", true);
-            transform.localScale = new Vector3(2, 2, 2);
+            transform.localScale = new Vector3(-0.3f, 0.3f, 0.3f);
             if (hit.collider.name != "Wall")
             {
                 transform.Translate(Vector3.left * Time.deltaTime * moveSpeed);
@@ -75,7 +73,7 @@ public class PlayerController: MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(frontVec, Vector3.right, LayerMask.GetMask("Wall"));
 
             anim.SetBool("Walking", true);
-            transform.localScale = new Vector3(-2, 2, 2);
+            transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
             if (hit.collider.name != "Wall")
             {
                 transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
@@ -147,7 +145,6 @@ public class PlayerController: MonoBehaviour
     public void OnDamaged(Vector2 targetPos)
     {
         gameObject.layer = 11;  //무적 상태
-        spriteRenderer.color = new Color(1, 1, 1, 0.7f);
         hitDirection = transform.position.x - targetPos.x > 0 ? 1 : -1;
 
         rigid.AddForce(new Vector2(hitDirection, 1) * 3, ForceMode2D.Impulse);
@@ -157,7 +154,6 @@ public class PlayerController: MonoBehaviour
     public void OffDamaged()
     {
         gameObject.layer = 10;  //무적 상태 해제
-        spriteRenderer.color = new Color(1, 1, 1, 1);
     }
 
     // Animation Trigger

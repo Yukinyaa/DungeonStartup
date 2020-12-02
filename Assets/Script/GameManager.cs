@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < numOfMonster; i++)
         {
-            monster[i] = Instantiate(Resources.Load<GameObject>("Enemy/Monster"), positions[i], Quaternion.identity);
+            monster[i] = Instantiate(Resources.Load<GameObject>("Enemy/Monster_" + Random.Range(1,4)), positions[i], Quaternion.identity);
         }
     }
 

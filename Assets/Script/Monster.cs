@@ -91,7 +91,7 @@ public class Monster : MonoBehaviour
                 Vector2 frontVec = new Vector2(transform.position.x - 1 * 0.4f, 0);
                 RaycastHit2D hit = Physics2D.Raycast(frontVec, Vector3.left, LayerMask.GetMask("Wall"));
 
-                transform.localScale = new Vector3(2, 2, 1);
+                transform.localScale = new Vector3(-0.3f, 0.3f, 0.3f);
 
                 if (hit.collider.name == "Wall" || hit.collider.name == "PlatWall")
                 {
@@ -107,7 +107,7 @@ public class Monster : MonoBehaviour
                 Vector2 frontVec = new Vector2(transform.position.x + 1 * 0.4f, 0);
                 RaycastHit2D hit = Physics2D.Raycast(frontVec, Vector3.right, LayerMask.GetMask("Wall"));
 
-                transform.localScale = new Vector3(-2, 2, 1);
+                transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
                 
 
                 if (hit.collider.name == "Wall" || hit.collider.name == "PlatWall")
