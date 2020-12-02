@@ -21,7 +21,7 @@ public static  class ItemDB
             new Item(Item.Rairity.normal,
                 "Body1",
                 "아무튼 몸통임",
-                "이것은 하치코볼입니다",
+                "이것은 몸통입니다",
                 Item.ItemType.body,
                 new Stat(
                         1, 1, 3, 0, 0, 0, 0, 0

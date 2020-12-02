@@ -11,6 +11,5 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         Debug.Assert(this is T);
         instance = this as T;
-        InventoryManager.Instance.equippedItems = new List<Item>();
     }
 }

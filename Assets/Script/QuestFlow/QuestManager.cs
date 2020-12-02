@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class QuestManager : Singleton<QuestManager>
 {
+    public IReadOnlyList<Quest> Quests { get => quests; }
     List<Quest> quests = new List<Quest>();
     public Quest ActivatedQuest { get; private set; }
 
@@ -12,7 +13,7 @@ public class QuestManager : Singleton<QuestManager>
         while (quests.Count < 3)
         {
             var rndQuest = QuestDB.Quests.RandomItem();
-            //if (!quests.Exists(q=>q==rndQuest)) // todo: remove this line if quests added
+            if (!quests.Exists(q=>q==rndQuest)) 
             {
                 quests.Add(rndQuest);
             }
@@ -23,18 +24,25 @@ public class QuestManager : Singleton<QuestManager>
     void Start()
     {
         AddRandomQuestUntil3();
+        SelectQuestUI.Instance.UpdateUI();
     }
 
 
     public void AcceptQuest(Quest q)
     {
+        if (q == null) return;
         ActivatedQuest = q;
+
+        //change "scene"
         InventoryManager.Instance.equippedItems = new List<Item>(q.startingbody);
         InventoryManager.Instance.ui.RefreshUI();
 
         
+        
+        
 
         //activate finish buttons
+
 
 
     }
