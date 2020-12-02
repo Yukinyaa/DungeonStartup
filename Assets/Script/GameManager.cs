@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     GameObject [] monster;
     Vector3[] positions;
@@ -73,6 +74,25 @@ public class GameManager : MonoBehaviour
         {
             monster[i] = Instantiate(Resources.Load<GameObject>("Enemy/Monster_" + Random.Range(1,4)), positions[i], Quaternion.identity);
         }
+    }
+    public void StartBattle()
+    {
+        RemoveMonster();
+        Destroy(player);
+        // QuestManager.Instance.ActivatedQuest.enemies  <<spawn these
+        Stat playerstat = (from Item i in InventoryManager.Instance.EquippedItems select i.stat).Aggregate(new Stat(), (a, b) => a + b);
+        // Spawn Player and use `playerstat` as stat
+        foreach (Item eqItem in InventoryManager.Instance.EquippedItems)
+        {
+            //swap sprites in character
+        }
+
+
+    }
+    public void CleanupBattle()
+    {
+        RemoveMonster();
+        Destroy(player);
     }
 
     // 몬스터 스폰 좌표 설정
