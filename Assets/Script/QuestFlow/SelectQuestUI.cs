@@ -78,7 +78,8 @@ public class SelectQuestUI : Singleton<SelectQuestUI>
                 }
                 else
                 {
-                    enemyName[i].text = enemies[i].Name;
+                    enemyName[i].text = enemies[i].Name + "<size=40%>x" + enemies[i].SpawnCount + "\n"+
+                        (from item in enemies[i].Item select item.stat).Aggregate(new Stat(), (a, b) => a + b).ToString().Replace('\n',' ');
                     enemyThumb[i].sprite =
                         enemies[i].Item.FirstOrDefault(item => item.type == Item.ItemType.head).Thumbnail
                         ?? emptySprite;

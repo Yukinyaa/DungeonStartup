@@ -28,7 +28,7 @@ public class QuestDB
                     new QuestStatCond("아름다움 20 이상", stat => stat.beauty >= 20)
                 },
                 enemies = null,
-                rewardMoney = 500,
+                rewardMoney = 2500,
                 startingbody = new List<Item>
                 {
 					//none
