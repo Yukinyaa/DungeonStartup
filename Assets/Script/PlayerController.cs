@@ -24,14 +24,16 @@ public class PlayerController: MonoBehaviour
     bool attacked;
     bool isJump;
     int hitDirection;
+    bool isCoolTime;
 
     // Player Status
     float maxHp;
     float nowHp;
     int attackDamage;
-    int attackSpeed;
+    float attackSpeed = 2f;
     float moveSpeed;
     float jumpForce;
+    int defense;
 
     public Transform pos;
     public Vector2 boxSize;
@@ -47,7 +49,7 @@ public class PlayerController: MonoBehaviour
         attacked        = false;
         isJump          = false;
         hitDirection    = 0;
-        InitStatus(100, 10, 1, 5f, 7.5f);     // Init Player Status
+        InitStatus(100, 10, 100f, 5f, 7.5f, 100, 100);     // Init Player Status
     }
 
     void Update()
@@ -82,10 +84,13 @@ public class PlayerController: MonoBehaviour
         else anim.SetBool("Walking", false);
 
         // 플레이어 공격
-        if (Input.GetKey(KeyCode.LeftControl) && !attacked)
+        if (Input.GetKey(KeyCode.LeftControl) && !attacked && !isCoolTime)
         {
             anim.SetTrigger("Attack");
             attacked = true;
+            isCoolTime = true;
+            AttackFalse();
+            Invoke("CoolTimeFalse", attackSpeed);
         }
 
         // 피격 시 날라가는 방향에 벽이 있으면 더 이상 밀려나지 않도록 설정 (좌: -1, 우: 1)
@@ -120,20 +125,25 @@ public class PlayerController: MonoBehaviour
     }
 
     // Set Player Status
-    private void InitStatus(float maxHp, int attackDamage, int attackSpeed, float moveSpeed, float jumpForce)
+    private void InitStatus(float maxHp, int attackDamage, float attackSpeed, float moveSpeed, float jumpForce, int defense, int attackReach)
     {
         this.maxHp = maxHp;
         this.nowHp = maxHp;
         this.attackDamage = attackDamage;
-        this.attackSpeed = attackSpeed;
+        this.attackSpeed = this.attackSpeed * (100 / (attackSpeed + 100f));
         this.moveSpeed = moveSpeed;
         this.jumpForce = jumpForce;
+        this.defense = defense;
+        this.boxSize.x = this.boxSize.x * ((100f + attackReach) / 100f);
+
+
+
     }
 
     // Damage Effect
     public void TakeDamage(int dmg)
     {
-        nowHp -= dmg;
+        nowHp -= (100f/(100f+defense))*dmg;
         // HP Bar 설정
         hpBar.fillAmount = (nowHp / maxHp);
         if (nowHp <= 0)
@@ -159,7 +169,11 @@ public class PlayerController: MonoBehaviour
     // Animation Trigger
     public void AttackFalse()
     {
-            attacked = false;
+        attacked = false;
+    }
+    public void CoolTimeFalse()
+    {
+        isCoolTime = false;
     }
 
     public void Attack()
