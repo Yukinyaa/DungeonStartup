@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UnityEngine;
 
 public class Stat : IComparer<Stat>
 {
@@ -135,7 +136,7 @@ public class Stat : IComparer<Stat>
         return true;
     }
 }
-public class Item : IComparer<Item>
+public class Item
 {
     public enum Rairity
     {
@@ -149,13 +150,16 @@ public class Item : IComparer<Item>
     public enum ItemType
     {
         none,
-        head, body, arm, leg, heart, weapon
+        head, body, leg, shield, weapon
     }
     public enum CompareMode
     {
         name, rarity
     }
     public static CompareMode compareMode;
+
+
+    public Sprite Thumbnail { get { return Resources.Load<Sprite>("Sprites/Items/" + codeName); } }
 
     public Rairity rairity;
     public string codeName;
@@ -165,9 +169,9 @@ public class Item : IComparer<Item>
     public ItemType type;
     public Stat stat;
 
-    public Item(Rairity rairity, string codename, string nameText, string flavorText, ItemType type, Stat stat)
+    public Item(string codename, string nameText, string flavorText, ItemType type, Stat stat)
     {
-        this.rairity = rairity;
+        this.rairity  = Rairity.normal;
         this.codeName = codename;
         this.nameText = nameText;
         this.flavorText = flavorText;
@@ -182,10 +186,5 @@ public class Item : IComparer<Item>
         this.flavorText = ie.flavorText;
         this.type = ie.type;
         this.stat = new Stat(ie.stat);
-    }
-    public int Compare(Item x, Item y)
-    {
-        throw new NotImplementedException("아이템 소팅 비교");
-        //return x - y;
     }
 }

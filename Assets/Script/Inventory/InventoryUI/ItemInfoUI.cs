@@ -18,6 +18,7 @@ public class ItemInfoUI : MonoBehaviour
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
