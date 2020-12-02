@@ -27,7 +27,7 @@ public class QuestDB
                 rewardMoney = 500,
                 startingbody = new List<Item>
                 {
-                    ItemDB.Items.FirstOrDefault(i=>i.codeName == "Head1")
+                    //none
                 },
                 thumbnail = null
             },
@@ -44,8 +44,8 @@ public class QuestDB
                 rewardMoney = 500,
                 startingbody = new List<Item>
                 {
-                    ItemDB.Items.FirstOrDefault(i=>i.codeName == "Head1"),
-                    ItemDB.Items.FirstOrDefault(i=>i.codeName == "Body1"),
+                    ItemDB.ItemDic["인간 기사의 머리"],
+                    ItemDB.ItemDic["인간 기사의 몸"]
                 },
                 thumbnail = null
             },
@@ -63,8 +63,8 @@ public class QuestDB
                 rewardMoney = 500,
                 startingbody = new List<Item>
                 {
-                    ItemDB.Items.FirstOrDefault(i=>i.codeName == "Head1"),
-                    ItemDB.Items.FirstOrDefault(i=>i.codeName == "Body1"),
+                    ItemDB.ItemDic["인간 기사의 다리"],
+                    ItemDB.ItemDic["인간 기사의 몸"],
                 },
                 thumbnail = null
             }

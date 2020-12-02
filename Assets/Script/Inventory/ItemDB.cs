@@ -1,9 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 
-public static  class ItemDB
+public static class ItemDB
 {
+    static Dictionary<string, Item> itemdic;
+    static public IReadOnlyDictionary<string, Item> ItemDic
+    {
+        get {
+            return itemdic = itemdic ?? CreateItemDic();
+        }
+    }
+    static Dictionary<string, Item> CreateItemDic()
+    {
+        var dic = new Dictionary<string, Item>();
+        foreach (Item i in Items)
+        {
+            dic.Add(i.nameText, i);
+        }
+        return dic;
+    }
 
     public static List<Item> Items
         = new List<Item>{
@@ -98,7 +115,7 @@ public static  class ItemDB
                     def = 30,
                     maxhp = 30,
                     mvspd = 30,
-                    beauty = 0
+                    beauty = -20
                 }
             ),
             new Item(
