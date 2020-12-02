@@ -42,7 +42,7 @@ public class PlayerController: MonoBehaviour
         audioSource     = GetComponent<AudioSource>();
         rigid           = GetComponent<Rigidbody2D>();
 
-        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        manager = GameObject.FindObjectOfType<GameManager>();
 
         attacked        = false;
         isJump          = false;
