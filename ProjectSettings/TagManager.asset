@@ -7,6 +7,7 @@ TagManager:
   - Monster
   - Ground
   - Wall
+  - canvasBattle
   layers:
   - Default
   - TransparentFX

@@ -33,8 +33,8 @@ public class Monster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //hpBar = Instantiate(prfHpBar, GameObject.Find("Canvas").transform).GetComponent<RectTransform>();
-        anim         = GetComponent<Animator>();
+        hpBar = Instantiate(prfHpBar, GameObject.FindWithTag("canvasBattle").transform).GetComponent<RectTransform>();
+        anim = GetComponent<Animator>();
         audio        = GetComponent<AudioSource>();
 
         manager = FindObjectOfType<GameManager>();
@@ -42,7 +42,7 @@ public class Monster : MonoBehaviour
         StartCoroutine("ChangeMovement");
 
         nowHp = maxHp;
-        //nowHpBar = hpBar.transform.GetChild(0).GetComponent<Image>();
+        nowHpBar = hpBar.transform.GetChild(0).GetComponent<Image>();
     }
 
     private void FixedUpdate()
@@ -53,14 +53,14 @@ public class Monster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        //if (hpBar != null)
-        //{
+        
+        if (hpBar != null)
+        {
             Vector3 _hpBarPos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + height, 0));
             hpBar.position = _hpBarPos;
             nowHpBar.fillAmount = nowHp / maxHp;
         }
-        */
+        
     }
 
     void Move()
@@ -193,7 +193,7 @@ public class Monster : MonoBehaviour
             Destroy(GetComponent<BoxCollider2D>());
             Destroy(GetComponent<CircleCollider2D>());
             Destroy(GetComponent<Rigidbody2D>());
-            //Destroy(hpBar.gameObject);
+            Destroy(hpBar.gameObject);
             Destroy(gameObject, 1.2f);
         }
     }

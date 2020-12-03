@@ -3,7 +3,12 @@ guid: db35a22121ab7c24a85eda12822a0303
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - prfHpBar: {fileID: 8087234735157663317, guid: 16da76730e284ec4994f0b19686d0cb0,
+      type: 3}
+  - hpBar: {instanceID: 0}
+  - hitSound: {instanceID: 0}
+  - deathSound: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

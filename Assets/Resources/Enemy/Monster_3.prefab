@@ -1560,7 +1560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db35a22121ab7c24a85eda12822a0303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prfHpBar: {fileID: 8087234735157663317, guid: c683f6ab00d2d174aa04ebeaeb8eb400,
+  prfHpBar: {fileID: 8087234735157663317, guid: 16da76730e284ec4994f0b19686d0cb0,
     type: 3}
   hpBar: {fileID: 0}
   height: 1
