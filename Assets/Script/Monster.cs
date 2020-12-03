@@ -184,7 +184,7 @@ public class Monster : MonoBehaviour
         
         if (nowHp <= 0)
         {
-            manager.nowMonster--;
+            GameManager.Instance.MobDie(gameObject);
             die = true;
             anim.SetBool("isWalking", false);
             anim.SetTrigger("die");
@@ -211,7 +211,6 @@ public class Monster : MonoBehaviour
 
     public void Die()
     {
-        GameManager.Instance.MobDie(gameObject);
         Destroy(gameObject);
     }
 }

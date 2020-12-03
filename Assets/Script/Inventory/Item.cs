@@ -67,6 +67,7 @@ public class Stat : IComparer<Stat>
         StringBuilder sb = new StringBuilder();
 
         if (showall || maxhp != 0) sb.AppendFormat("최대 체력: {0:0.0#}\n", maxhp);
+        if (showall || def != 0) sb.AppendFormat("방어력: {0:0.0#}\n\n", def);
         if (showall || atk != 0) sb.AppendFormat("공격력 : {0:0.0#}\n", atk);
         if (showall || mvspd != 0) sb.AppendFormat("이동속도: {0:0.0#}\n", mvspd);
         if (showall || atkrng != 0) sb.AppendFormat("사거리: {0:0.0#}\n", atkrng);
@@ -76,8 +77,6 @@ public class Stat : IComparer<Stat>
         else if (beauty < 0) sb.AppendFormat("기괴함: {0:0.0#}\n", -beauty);
         else if (showall) sb.AppendFormat("아름다움: {0:0.0#}\n", beauty);
 
-        if (showall || pow != 0) sb.AppendFormat("힘: {0:0.0#}", pow);
-        if (showall || def != 0) sb.AppendFormat("방어력: {0:0.0#}", def);
 
 
         return sb.ToString();

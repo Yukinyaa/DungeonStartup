@@ -14,8 +14,8 @@ public class InventoryManager : Singleton<InventoryManager>
 
     public void Start()
     {
-        foreach(Item i in ItemDB.Items)
-            AddToInventory(i);
+        //foreach(Item i in ItemDB.Items)
+            //AddToInventory(i); //debug
     }
     public void AddToInventory(Item i)
     {

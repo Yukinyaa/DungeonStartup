@@ -7,14 +7,13 @@ using Random = UnityEngine.Random;
 
 public class GameManager : Singleton<GameManager>
 {
-    List<GameObject> monster;
+    List<GameObject> monster = new List<GameObject>();
     Vector3[] positions;
 
     public PlayerController player;
 
     // 맵 상 몬스터 수
     public int numOfMonster = 5;
-    public int nowMonster;
 
     bool isClear;             // 몬스터를 모두 잡았는지 여부 (성공)
     bool isFail;            // 플레이어가 죽었는지 여부 (실패)
@@ -71,8 +70,6 @@ public class GameManager : Singleton<GameManager>
     // 몬스터 스폰 초기 설정
     public void SpawnMonster()
     {
-        nowMonster = numOfMonster;
-
         for (int i = 0; i < numOfMonster; i++)
         {
             monster.Add(Instantiate(Resources.Load<GameObject>("Enemy/Monster_" + Random.Range(1,4)), positions[i], Quaternion.identity));
