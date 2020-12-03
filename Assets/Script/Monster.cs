@@ -14,7 +14,7 @@ public class Monster : MonoBehaviour
     GameManager manager;
 
     // Declare Variables
-    public float height = 1f;   // 체력바 높이
+    public float height = 4f;   // 체력바 높이
     bool isTracing;
     int movementFlag = 0;       // 0: idle, 1: left, 2: right
     public AudioClip hitSound;

@@ -32,10 +32,10 @@ RectTransform:
   m_Father: {fileID: 8087234735157663316}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 150, y: 20}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8087234734634132309
 CanvasRenderer:
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 8087234735157663318}
   - component: {fileID: 8087234735157663319}
   m_Layer: 5
-  m_Name: HpBarBack
+  m_Name: MonHpBarBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,8 +109,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 95, y: -25}
-  m_SizeDelta: {x: 150, y: 20}
+  m_AnchoredPosition: {x: 117.51, y: -22}
+  m_SizeDelta: {x: 300.08923, y: 40.011898}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8087234735157663318
 CanvasRenderer:

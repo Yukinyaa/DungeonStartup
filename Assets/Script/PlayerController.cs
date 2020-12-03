@@ -38,7 +38,7 @@ public class PlayerController: MonoBehaviour
     public Transform pos;
     public Vector2 boxSize;
   
-    void Start()
+    void Awake()
     {
         anim            = GetComponent<Animator>();
         audioSource     = GetComponent<AudioSource>();
