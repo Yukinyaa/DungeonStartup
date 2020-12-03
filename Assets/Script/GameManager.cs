@@ -19,8 +19,6 @@ public class GameManager : Singleton<GameManager>
     bool isFail;            // 플레이어가 죽었는지 여부 (실패)
     bool isEvent;           // 이벤트 처리
 
-    bool t = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -47,10 +45,8 @@ public class GameManager : Singleton<GameManager>
 
         if (false)//Input.GetKey(KeyCode.A) && !t)
         {
-            t = true;
             RemoveMonster();
             SpawnMonster();
-            t = false;
         }
 
         // 몬스터를 모두 잡았을 때 이벤트 발생
