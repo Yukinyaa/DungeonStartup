@@ -31,7 +31,7 @@ public class PlayerController: MonoBehaviour
     float nowHp;
     int attackDamage;
     float attackSpeed = 0.8f;
-    float moveSpeed;
+    float moveSpeed = 10;
     float jumpForce;
     int defense;
 
@@ -133,7 +133,7 @@ public class PlayerController: MonoBehaviour
         this.nowHp = maxHp;
         this.attackDamage = attackDamage;
         this.attackSpeed = this.attackSpeed / (100 / (attackSpeed + 100f));
-        this.moveSpeed = moveSpeed;
+        this.moveSpeed = this.moveSpeed / (100 / (moveSpeed + 100f));
         this.jumpForce = jumpForce;
         this.defense = defense;
         this.boxSize.x = this.boxSize.x * ((100f + attackReach) / 100f);

@@ -99,7 +99,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 165fab0987e78574e950b145f4babf7e, type: 3}
   - {fileID: 21300000, guid: b968ba2af51201445a7f0cd12d445b41, type: 3}
   - {fileID: 21300000, guid: 37d00bff59662e648abd4c2d5af547a2, type: 3}
-  partType: 5
+  partType: 4
 --- !u!1 &100427014915174440
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,7 +864,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100427015715406426}
-  m_LocalRotation: {x: 0, y: 0, z: 0.22945532, w: 0.97331923}
+  m_LocalRotation: {x: 0, y: 0, z: 0.22945505, w: 0.9733193}
   m_LocalPosition: {x: 0.72142684, y: 0.00000029802322, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1627,7 +1627,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100427016507304237}
-  m_LocalRotation: {x: 0, y: 0, z: -0.9993012, w: -0.037379425}
+  m_LocalRotation: {x: 0, y: 0, z: -0.9993012, w: -0.037379187}
   m_LocalPosition: {x: 1.109386, y: -0.9010879, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1649,7 +1649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 0, g: 0, b: 1, a: 1}
-  m_Length: 0.72142684
+  m_Length: 0.7214268
   m_ChildTransform: {fileID: 100427015715406427}
   m_AttachedIK: {fileID: 100427016951952157}
 --- !u!1 &100427016598143951
@@ -2290,11 +2290,11 @@ MonoBehaviour:
     m_SolverPoses:
     - m_BoneTransform: {fileID: 100427016507304234}
       solverPosition: {x: 0, y: 0, z: 0}
-      solverRotation: {x: 0, y: 0, z: -0.99930114, w: -0.03737942}
+      solverRotation: {x: 0, y: 0, z: -0.99930114, w: -0.037379183}
       defaultLocalRotation: {x: 0, y: 0, z: -0.87934977, w: 0.4761765}
     - m_BoneTransform: {fileID: 100427015715406427}
       solverPosition: {x: 0, y: 0, z: 0}
-      solverRotation: {x: 0, y: 0, z: 0.2294553, w: 0.9733192}
+      solverRotation: {x: 0, y: 0, z: 0.22945504, w: 0.97331923}
       defaultLocalRotation: {x: 0, y: 0, z: -0.077202946, w: 0.9970154}
     m_Weight: 1
     m_RestoreDefaultPose: 0
