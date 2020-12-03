@@ -37,7 +37,7 @@ public class Monster : MonoBehaviour
         anim         = GetComponent<Animator>();
         audio        = GetComponent<AudioSource>();
 
-        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        manager = FindObjectOfType<GameManager>();
 
         StartCoroutine("ChangeMovement");
 
@@ -211,6 +211,7 @@ public class Monster : MonoBehaviour
 
     public void Die()
     {
+        GameManager.Instance.MobDie(gameObject);
         Destroy(gameObject);
     }
 }

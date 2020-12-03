@@ -14,7 +14,7 @@ public class QuestDB
         set => quests = value;
     }
 
-
+    
     public static void Init()
     {
         quests = new List<Quest>() {
@@ -31,8 +31,8 @@ public class QuestDB
                 rewardMoney = 2500,
                 startingbody = new List<Item>
                 {
-					//none
-				},
+               //none
+            },
                 thumbnail = Resources.Load<Sprite>("Sprites/QThumbs/S_Sword15")
             },
             new Quest(){
@@ -58,7 +58,7 @@ public class QuestDB
                 rewardMoney = 1000,
                 startingbody = new List<Item>
                 {
-					ItemDB.ItemDic["해골 암살자의 머리" ],
+               ItemDB.ItemDic["해골 암살자의 머리" ],
                     ItemDB.ItemDic["해골 암살자의 몸"],
                     ItemDB.ItemDic["해골 암살자의 다리"],
                     ItemDB.ItemDic["방망이"]
@@ -79,7 +79,7 @@ public class QuestDB
                 rewardMoney = 2000,
                 startingbody = new List<Item>
                     {
-						ItemDB.ItemDic["엘프 탐험가의 머리"],
+                  ItemDB.ItemDic["엘프 탐험가의 머리"],
                         ItemDB.ItemDic["오크 전사의 몸"],
                     },
                     thumbnail =  Resources.Load<Sprite>("Sprites/QThumbs/I_Scroll")
@@ -132,6 +132,144 @@ public class QuestDB
                         ItemDB.ItemDic["방망이"]
                 },
                 thumbnail =  Resources.Load<Sprite>("Sprites/QThumbs/E_Wood03")
+            },
+
+            new Quest(){
+                title = "습격",
+                subtitle = "셀라스(?) 습격 의뢰",
+                desc = "많은 오크, 죽었다. 더 많은 인간 죽는다.",
+                statConditions = new List<QuestStatCond>
+                {
+                    new QuestStatCond("기괴함 40 이상", stat => stat.beauty <= -40),
+                    new QuestStatCond("공격력 80 이상", stat => stat.atk >= 80)
+                },
+                enemies= new List<EnemyInfo> {
+                    new EnemyInfo("인간 기사",
+                                                        new List<Item>
+                {
+                        ItemDB.ItemDic["인간 기사의 머리"],
+                        ItemDB.ItemDic["인간 기사의 몸"],
+                        ItemDB.ItemDic["인간 기사의 다리"],
+                        ItemDB.ItemDic["방망이"]
+                }, 10)},
+                rewardMoney = 8000,
+                startingbody = new List<Item>
+                {
+                    ItemDB.ItemDic["인간 기사의 머리"],
+                    ItemDB.ItemDic["인간 기사의 몸"],
+                    ItemDB.ItemDic["인간 기사의 다리"],
+                    ItemDB.ItemDic["방망이"],
+                    ItemDB.ItemDic["강철방패"],
+                },
+	//// 인간 기사 다수
+	//// 최고 난이도 급 퀘스트
+                    thumbnail =  Resources.Load<Sprite>("Sprites/QThumbs/")
+            },
+
+            new Quest(){
+                title = "퇴마",
+                subtitle = "언데드 기사 처치",
+                desc = "무덤에서 사이한 괴물들이 나타났다고 합니다. 사람을 보내 그 악령들을 퇴마해주십시오.",
+                statConditions = new List<QuestStatCond>
+                {
+                    new QuestStatCond("아름다움 80 이상", stat => stat.beauty >= 80)
+                },
+                enemies= new List<EnemyInfo> {
+                    new EnemyInfo("언데드 기사",
+                                                        new List<Item>
+                {
+                        ItemDB.ItemDic["인간 기사의 머리"],
+                        ItemDB.ItemDic["해골 암살자의 몸"],
+                        ItemDB.ItemDic["해골 암살자의 다리"],
+                        ItemDB.ItemDic["방망이"]
+                }, 10)},
+                rewardMoney = 7000,
+                startingbody = new List<Item>
+                {
+                    ItemDB.ItemDic["해골 암살자의 머리"],
+                    ItemDB.ItemDic["인간 기사의 몸"],
+                    ItemDB.ItemDic["인간 기사의 다리"],
+                    ItemDB.ItemDic["식칼"]
+                },
+	///// 언데드 기사 다수
+                    thumbnail =  Resources.Load<Sprite>("Sprites/QThumbs/")
+            },
+
+            new Quest(){
+                title = "복수",
+                subtitle = "피의 복수",
+                desc = "내... 연인을 죽인 원수... 자, 내 몸을 가져가서 그 녀석에게 복수할 힘을 줘.",
+                statConditions = new List<QuestStatCond>
+                {
+                    new QuestStatCond("공격속도 40 이상", stat => stat.atkspd >= 40)
+                },
+                enemies = null,
+                rewardMoney = 2000,
+                startingbody = new List<Item>
+                {
+                    ItemDB.ItemDic["엘프 탐험가의 머리"],
+                    ItemDB.ItemDic["해골 암살자의 몸"],
+                    ItemDB.ItemDic["인간 기사의 다리"],
+                    ItemDB.ItemDic["거북이"]
+                },
+                thumbnail =  Resources.Load<Sprite>("Sprites/QThumbs/")
+            },
+
+            new Quest(){
+                title = "트레이닝",
+                subtitle = "몸짱이 되고싶어",
+                desc = "내 허약한 몸을 튼튼하게 만들어줘!",
+                statConditions = new List<QuestStatCond>
+                {
+                    new QuestStatCond("체력 70 이상", stat => stat.maxhp >= 70),
+                    new QuestStatCond("방어력 50 이상", stat => stat.def >= 50)
+                },
+                enemies = null,
+                rewardMoney = 1500,
+                startingbody = new List<Item>
+                {
+                    //none
+                },
+                thumbnail =  Resources.Load<Sprite>("Sprites/QThumbs/")
+            },
+
+            new Quest(){
+                title = "호들갑",
+                subtitle = "노예를 아끼는 호들갑쟁이의 의뢰",
+                desc = "난 내 노예가 상하는 꼴은 절대 못봐. 전투 노예라도 말이야. 멀리서 때릴 수 있는 녀석으로 내놔봐.",
+                statConditions = new List<QuestStatCond>
+                {
+                    new QuestStatCond("사거리 30 이상", stat => stat.atkrng >= 30)
+                },
+                enemies = null,
+                rewardMoney = 3000,
+                startingbody = new List<Item>
+                    {
+                        ItemDB.ItemDic["인간 기사의 머리"],
+                        ItemDB.ItemDic["엘프 탐험가의 몸"],
+                        ItemDB.ItemDic["해골 암살자의 다리"],
+                        ItemDB.ItemDic["연"],
+                    },
+                    thumbnail =  Resources.Load<Sprite>("Sprites/QThumbs/")
+            },
+
+            new Quest(){
+                title = "버르장머리 고치기",
+                subtitle = "불량스러운 견습 기사 혼쭐내기",
+                desc = "에잉... 나 때는 말이야? 부모님이 주신 몸에 구멍을 뚫고 그림을 그리는 일은 있을 수가 없었어! 심부름꾼을 시켜서 그 애송이를 혼내주려무나.",
+                statConditions = new List<QuestStatCond>
+                {
+                    new QuestStatCond("방어력 20이상", stat => stat.def >= 20 ),
+                },
+                enemies = null,
+                rewardMoney = 600,
+                startingbody = new List<Item>
+                    {
+                        ItemDB.ItemDic["오크 전사의 머리"],
+                        ItemDB.ItemDic["인간 기사의 몸"],
+                        ItemDB.ItemDic["엘프 탐험가의 다리"]
+                    },
+                    thumbnail =  Resources.Load<Sprite>("Sprites/QThumbs/")
             }
         };
     }

@@ -1,11 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : Singleton<GameManager>
 {
-    GameObject [] monster;
+    List<GameObject> monster;
     Vector3[] positions;
 
     public PlayerController player;
@@ -23,22 +25,23 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-        monster = new GameObject[numOfMonster];
         positions = new Vector3[numOfMonster];
 
         isClear = false;
         isFail = false;
-        isEvent = false;
+        isEvent = true;
 
         SetSpawnPoint();
-        SpawnMonster();
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        monster?.RemoveAll(a => a == null);
         // 모든 몬스터를 다 잡았다면
-        if(nowMonster == 0)
+        if(monster.Count == 0)
         {
             isClear = true;
         }
@@ -72,27 +75,50 @@ public class GameManager : Singleton<GameManager>
 
         for (int i = 0; i < numOfMonster; i++)
         {
-            monster[i] = Instantiate(Resources.Load<GameObject>("Enemy/Monster_" + Random.Range(1,4)), positions[i], Quaternion.identity);
+            monster.Add(Instantiate(Resources.Load<GameObject>("Enemy/Monster_" + Random.Range(1,4)), positions[i], Quaternion.identity));
         }
     }
     public void StartBattle()
     {
         RemoveMonster();
-        Destroy(player);
-        // QuestManager.Instance.ActivatedQuest.enemies  <<spawn these
-        Stat playerstat = (from Item i in InventoryManager.Instance.EquippedItems select i.stat).Aggregate(new Stat(), (a, b) => a + b);
-        // Spawn Player and use `playerstat` as stat
-        foreach (Item eqItem in InventoryManager.Instance.EquippedItems)
+        if(player != null)
+            Destroy(player.gameObject);
+        monster = new List<GameObject>();
+
+        //Spawn Monsters
+        foreach (EnemyInfo m in QuestManager.Instance.ActivatedQuest.enemies)  //<<spawn these
         {
-            //swap sprites in character
+            for (int i=0; i < m.SpawnCount; i++)
+            {
+                //todo: spawn properly
+                monster.Add(Instantiate(Resources.Load<GameObject>("Enemy/Monster_" + UnityEngine.Random.Range(1, 4)), positions[UnityEngine.Random.Range(0, 4)], Quaternion.identity));
+            }
         }
 
 
+        Stat s = (from Item i in InventoryManager.Instance.EquippedItems select i.stat).Aggregate(new Stat(), (a, b) => a + b);
+        
+        // Spawn Player and use `playerstat` as stat
+        player = Instantiate(Resources.Load<GameObject>("Player/Player"), new Vector3(-4.12f, -4f), Quaternion.identity).GetComponent<PlayerController>();
+        player.InitStatus(s.maxhp, (int)s.atk, s.atkspd, s.mvspd, 7.5f, (int)s.def, (int)s.atkrng);
+
+        List<SpriteSkinSwapper> playerSprites = player.GetComponentsInChildren<SpriteSkinSwapper>().ToList();
+        //swap sprites in character
+        foreach (Item.ItemType itype in new List<Item.ItemType> { Item.ItemType.body, Item.ItemType.head, Item.ItemType.leg, Item.ItemType.shield, Item.ItemType.weapon })
+        {
+            var itempart = InventoryManager.Instance.EquippedItems.FirstOrDefault(i => i.type == itype);
+            var targetParts = playerSprites.Where(a => a.partType == itype);
+            foreach (var part in targetParts)
+                part.SwapSkin(itempart?.serial);
+        }
+        isClear = false;
+        isFail = false;
+        isEvent = false;
     }
     public void CleanupBattle()
     {
         RemoveMonster();
-        Destroy(player);
+        Destroy(player.gameObject);
     }
 
     // 몬스터 스폰 좌표 설정
@@ -108,7 +134,8 @@ public class GameManager : Singleton<GameManager>
     // 몬스터 제거
     public void RemoveMonster()
     {
-        for (int i = 0; i < numOfMonster; i++)
+        if (monster == null) return;
+        for (int i = 0; i < monster.Count; i++)
         {
             Destroy(monster[i]);
         }
@@ -117,18 +144,20 @@ public class GameManager : Singleton<GameManager>
     // 몬스터를 모두 잡았을 때 실행할 것
     public void ClearEvent()
     {
-        isClear = false;
-        isEvent = false;
+        //창 띄워서 가는게 어떨까
+        UISupervisor.Instance.ActivateUI(UISupervisor.UIViews.ConfirmDelever);
+        CleanupBattle();
+        
         Debug.Log("퀘스트 완료");
     }
 
     // 플레이어가 죽었을 때 실행할 것
     public void FailEvent()
     {
-        isFail = false;
-        isEvent = false;
+        //창 띄워서 가는게 어떨까
         Debug.Log("퀘스트 실패");
-
+        UISupervisor.Instance.ActivateUI(UISupervisor.UIViews.Assemble);
+        CleanupBattle();
         // 플레이어 살려보기 (retry)?
 
     }
@@ -137,5 +166,10 @@ public class GameManager : Singleton<GameManager>
     public void SetPlayerDie()
     {
         isFail = true;
+    }
+
+    internal void MobDie(GameObject gameObject)
+    {
+        monster.Remove(gameObject);
     }
 }

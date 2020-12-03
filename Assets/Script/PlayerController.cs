@@ -30,7 +30,7 @@ public class PlayerController: MonoBehaviour
     float maxHp;
     float nowHp;
     int attackDamage;
-    float attackSpeed = 2f;
+    float attackSpeed = 0.8f;
     float moveSpeed;
     float jumpForce;
     int defense;
@@ -43,13 +43,15 @@ public class PlayerController: MonoBehaviour
         anim            = GetComponent<Animator>();
         audioSource     = GetComponent<AudioSource>();
         rigid           = GetComponent<Rigidbody2D>();
-
+        hpBar = GameObject.FindObjectOfType<HpBar>().GetComponent<Image>();
         manager = GameObject.FindObjectOfType<GameManager>();
 
         attacked        = false;
         isJump          = false;
         hitDirection    = 0;
-        InitStatus(100, 10, 100f, 5f, 7.5f, 100, 100);     // Init Player Status
+
+        Camera.main.GetComponent<CameraControl>().target = this.gameObject;
+        //InitStatus(100, 10, 100f, 5f, 7.5f, 100, 100);     // Init Player Status
     }
 
     void Update()
@@ -90,7 +92,7 @@ public class PlayerController: MonoBehaviour
             attacked = true;
             isCoolTime = true;
             AttackFalse();
-            Invoke("CoolTimeFalse", attackSpeed);
+            Invoke("CoolTimeFalse", 1/attackSpeed);
         }
 
         // 피격 시 날라가는 방향에 벽이 있으면 더 이상 밀려나지 않도록 설정 (좌: -1, 우: 1)
@@ -125,12 +127,12 @@ public class PlayerController: MonoBehaviour
     }
 
     // Set Player Status
-    private void InitStatus(float maxHp, int attackDamage, float attackSpeed, float moveSpeed, float jumpForce, int defense, int attackReach)
+    public void InitStatus(float maxHp, int attackDamage, float attackSpeed, float moveSpeed, float jumpForce, int defense, int attackReach)
     {
         this.maxHp = maxHp;
         this.nowHp = maxHp;
         this.attackDamage = attackDamage;
-        this.attackSpeed = this.attackSpeed * (100 / (attackSpeed + 100f));
+        this.attackSpeed = this.attackSpeed / (100 / (attackSpeed + 100f));
         this.moveSpeed = moveSpeed;
         this.jumpForce = jumpForce;
         this.defense = defense;

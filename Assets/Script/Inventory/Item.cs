@@ -168,8 +168,9 @@ public class Item
     public string flavorText;
     public ItemType type;
     public Stat stat;
+    public int serial;
 
-    public Item(string codename, string nameText, string flavorText, ItemType type, Stat stat)
+    public Item(string codename, string nameText, string flavorText, ItemType type, Stat stat, int serial)
     {
         this.rairity  = Rairity.normal;
         this.codeName = codename;
@@ -177,6 +178,7 @@ public class Item
         this.flavorText = flavorText;
         this.type = type;
         this.stat = new Stat(stat);
+        this.serial = serial;
     }
     public Item(Item ie)
     {
@@ -186,5 +188,6 @@ public class Item
         this.flavorText = ie.flavorText;
         this.type = ie.type;
         this.stat = new Stat(ie.stat);
+        this.serial = ie.serial;
     }
 }
