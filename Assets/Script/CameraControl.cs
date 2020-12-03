@@ -51,11 +51,16 @@ public class CameraControl: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(target == null)
+        {
+            //target = GameObject.FindObjectOfType(typeof(PlayerController)) as GameObject; 
+        }
+
         // 대상이 있는지 체크
         if (target.gameObject != null)
         {
             // this는 카메라를 의미 (z값은 카메라값을 그대로 유지)
-            targetPosition.Set(target.transform.position.x, target.transform.position.y, this.transform.position.z);
+            targetPosition.Set(target.transform.position.x, target.transform.position.y + 3f, this.transform.position.z);
 
             // vectorA -> B까지 T의 속도로 이동
             this.transform.position = Vector3.Lerp(this.transform.position, targetPosition, moveSpeed * Time.deltaTime);

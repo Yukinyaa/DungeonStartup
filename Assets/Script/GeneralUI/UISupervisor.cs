@@ -14,12 +14,15 @@ public class UISupervisor : Singleton<UISupervisor>
     [SerializeField]
     RectTransform questUI, assembleUI, battleUI, confirmDeleverUI;
     [SerializeField]
+    GameObject bunker;
+    [SerializeField]
     float hidePos = 3000;
 
     RectTransform currentUI;
 
     private void Start()
     {
+        Camera.main.GetComponent<CameraControl>().target = bunker;
         questUI?.DOLocalMoveY(hidePos, 1);
         assembleUI?.DOLocalMoveY(hidePos, 1);
         battleUI?.DOLocalMoveY(hidePos, 1);
@@ -43,6 +46,8 @@ public class UISupervisor : Singleton<UISupervisor>
     }
     public void ActivateUI(UIViews select)
     {
+        if (select != UIViews.Battle)
+            Camera.main.GetComponent<CameraControl>().target = bunker;
         currentUI.DOLocalMoveY(hidePos, 1);
         currentUI = Enum2Transform(select);
         currentUI.DOLocalMoveY(0, 1);

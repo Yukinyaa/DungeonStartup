@@ -1608,8 +1608,8 @@ MonoBehaviour:
     type: 3}
   hpBar: {fileID: 0}
   height: 1
-  hitSound: {fileID: 8300000, guid: 91d59e9832babad4abf95771dd412e63, type: 3}
-  deathSound: {fileID: 8300000, guid: acf32be123cb8294094527345867bdc2, type: 3}
+  hitSound: {fileID: 8300000, guid: 103efa2e1aac4b44f896a5fb4d2c0ff7, type: 3}
+  deathSound: {fileID: 8300000, guid: 3065c1cc3b08bdf4baa98fa6f176e792, type: 3}
   maxHp: 30
   attackDamage: 40
   attackSpeed: 0
