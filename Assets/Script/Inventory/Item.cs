@@ -67,6 +67,7 @@ public class Stat : IComparer<Stat>
         StringBuilder sb = new StringBuilder();
 
         if (showall || maxhp != 0) sb.AppendFormat("최대 체력: {0:0.0#}\n", maxhp);
+        if (showall || def != 0) sb.AppendFormat("방어력: {0:0.0#}\n\n", def);
         if (showall || atk != 0) sb.AppendFormat("공격력 : {0:0.0#}\n", atk);
         if (showall || mvspd != 0) sb.AppendFormat("이동속도: {0:0.0#}\n", mvspd);
         if (showall || atkrng != 0) sb.AppendFormat("사거리: {0:0.0#}\n", atkrng);
@@ -76,8 +77,6 @@ public class Stat : IComparer<Stat>
         else if (beauty < 0) sb.AppendFormat("기괴함: {0:0.0#}\n", -beauty);
         else if (showall) sb.AppendFormat("아름다움: {0:0.0#}\n", beauty);
 
-        if (showall || pow != 0) sb.AppendFormat("힘: {0:0.0#}", pow);
-        if (showall || def != 0) sb.AppendFormat("방어력: {0:0.0#}", def);
 
 
         return sb.ToString();
@@ -168,8 +167,9 @@ public class Item
     public string flavorText;
     public ItemType type;
     public Stat stat;
+    public int serial;
 
-    public Item(string codename, string nameText, string flavorText, ItemType type, Stat stat)
+    public Item(string codename, string nameText, string flavorText, ItemType type, Stat stat, int serial)
     {
         this.rairity  = Rairity.normal;
         this.codeName = codename;
@@ -177,6 +177,7 @@ public class Item
         this.flavorText = flavorText;
         this.type = type;
         this.stat = new Stat(stat);
+        this.serial = serial;
     }
     public Item(Item ie)
     {
@@ -186,5 +187,6 @@ public class Item
         this.flavorText = ie.flavorText;
         this.type = ie.type;
         this.stat = new Stat(ie.stat);
+        this.serial = ie.serial;
     }
 }

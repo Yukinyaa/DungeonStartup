@@ -37,7 +37,7 @@ public class Monster : MonoBehaviour
         anim         = GetComponent<Animator>();
         audio        = GetComponent<AudioSource>();
 
-        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        manager = FindObjectOfType<GameManager>();
 
         StartCoroutine("ChangeMovement");
 
@@ -184,7 +184,7 @@ public class Monster : MonoBehaviour
         
         if (nowHp <= 0)
         {
-            manager.nowMonster--;
+            GameManager.Instance.MobDie(gameObject);
             die = true;
             anim.SetBool("isWalking", false);
             anim.SetTrigger("die");

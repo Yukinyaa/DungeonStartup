@@ -36,7 +36,7 @@ public static class ItemDB
                     maxhp = 30,
                     atkrng = 10,
                     beauty = 10
-                }
+                },1
 
                 ),
 
@@ -53,7 +53,7 @@ public static class ItemDB
                     maxhp = 40,
                     atkspd = 10,
                     beauty = 10
-                }
+                },1
             ),
 
 
@@ -69,7 +69,7 @@ public static class ItemDB
                     maxhp = 30,
                     mvspd = 10,
                     beauty = 10
-                }
+                },1
             ),
             new Item(
                 "OrkHead",
@@ -83,7 +83,7 @@ public static class ItemDB
                     maxhp = 20,
                     atkrng = 10,
                     beauty = -10
-                }
+                },2
 
                 ),
 
@@ -100,7 +100,7 @@ public static class ItemDB
                     maxhp = 30,
                     atkspd = 20,
                     beauty = 20
-                }
+                },2
             ),
 
 
@@ -116,7 +116,7 @@ public static class ItemDB
                     maxhp = 30,
                     mvspd = 30,
                     beauty = -20
-                }
+                },2
             ),
             new Item(
                 "ElfHead",
@@ -130,7 +130,7 @@ public static class ItemDB
                     maxhp = 30,
                     atkrng = 40,
                     beauty = 20
-                }
+                },0
 
                 ),
 
@@ -147,7 +147,7 @@ public static class ItemDB
                     maxhp = 20,
                     atkspd = 30,
                     beauty = 10
-                }
+                },0
             ),
 
 
@@ -163,7 +163,7 @@ public static class ItemDB
                     maxhp = 20,
                     mvspd = 30,
                     beauty = 20
-                }
+                },0
             ),
             new Item(
                 "SeletonHead",
@@ -177,7 +177,7 @@ public static class ItemDB
                     maxhp = 30,
                     atkrng = 20,
                     beauty = 00
-                }
+                },3
 
                 ),
 
@@ -194,7 +194,7 @@ public static class ItemDB
                     maxhp = 10,
                     atkspd = 20,
                     beauty = -10
-                }
+                },3
             ),
 
 
@@ -210,7 +210,7 @@ public static class ItemDB
                     maxhp = 10,
                     mvspd = 40,
                     beauty = -10
-                }
+                },3
             ),
 
             /*********************************/
@@ -228,7 +228,7 @@ public static class ItemDB
                     atkspd = -10,
                     atkrng = 4,
                     beauty = -10
-                }
+                },0
             ),
 
             new Item(
@@ -242,7 +242,7 @@ public static class ItemDB
                     atkspd = 50,
                     atkrng = -50,
                     beauty = 1
-                }
+                },2
             ),
 
             new Item(
@@ -256,7 +256,7 @@ public static class ItemDB
                     atkspd = 1,
                     atkrng = 60,
                     beauty = -10
-                }
+                },1
             ),
 
             new Item(
@@ -267,10 +267,10 @@ public static class ItemDB
                 new Stat()
                 {
                     atk = 60,
-                    atkspd = 100,
+                    atkspd = 300,
                     atkrng = 50,
                     beauty = 20
-                }
+                },3
             ),
 
             /*************************************/
@@ -286,7 +286,7 @@ public static class ItemDB
                 {
                     def = 5,
                     beauty = 20
-                }
+                },2
             ),
             new Item(
                 "IShield",
@@ -297,7 +297,7 @@ public static class ItemDB
                 {
                     def = 20,
                     beauty = 5
-                }
+                },1
             ),
             new Item(
                 "Turtle",
@@ -308,7 +308,7 @@ public static class ItemDB
                 {
                     def = 40,
                     beauty = -10
-                }
+                },3
             ),
             new Item(
                 "FFGenerator",
@@ -319,7 +319,7 @@ public static class ItemDB
                 {
                     def = 80,
                     beauty = -20
-                }
+                },0
             ),
 
 

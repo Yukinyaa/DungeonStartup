@@ -52,10 +52,10 @@ public class BtnFunctions : MonoBehaviour
         switch (function)
         {
             case BtnType.HideThis:
-                arg_transform.transform.DOLocalMoveX(800, 1);
+                arg_transform.transform.DOLocalMoveX(800, 0.5f);
                 break;
             case BtnType.ShowThis:
-                arg_transform.transform.DOLocalMoveX(-10, 1)
+                arg_transform.transform.DOLocalMoveX(-10, 0.5f)
                     .OnComplete(() => arg_transform.DOLocalMoveX(0, 0.5f));
                 break;
             case BtnType.GoToAssemble:
@@ -72,6 +72,7 @@ public class BtnFunctions : MonoBehaviour
                 {
                     //go to battle here
                     UISupervisor.Instance.ActivateUI(UISupervisor.UIViews.Battle);
+                    GameManager.Instance.StartBattle();
                 }
                 
                 break;

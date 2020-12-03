@@ -32,11 +32,14 @@ public class SelectQuestUI : Singleton<SelectQuestUI>
         emptySprite = Resources.Load<Sprite>("Sprites/none");
         selectedQuest = null;
         UpdateUI();
-        acceptButton.onClick.AddListener(
-            () => QuestManager.Instance.AcceptQuest(selectedQuest)
-            );
+        acceptButton.onClick.AddListener(AcceptClicked);
     }
 
+    public void AcceptClicked()
+    {
+        QuestManager.Instance.AcceptQuest(selectedQuest);
+        selectedQuest = null;
+    }
     public void SelectQuest(Quest q)
     {
         selectedQuest = q;
