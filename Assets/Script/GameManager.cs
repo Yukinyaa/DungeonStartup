@@ -45,7 +45,7 @@ public class GameManager : Singleton<GameManager>
             isClear = true;
         }
 
-        if (Input.GetKey(KeyCode.A) && !t)
+        if (false)//Input.GetKey(KeyCode.A) && !t)
         {
             t = true;
             RemoveMonster();
@@ -87,8 +87,18 @@ public class GameManager : Singleton<GameManager>
         {
             for (int i=0; i < m.SpawnCount; i++)
             {
-                //todo: spawn properly
-                monster.Add(Instantiate(Resources.Load<GameObject>("Enemy/Monster_" + UnityEngine.Random.Range(1, 4)), positions[UnityEngine.Random.Range(0, 4)], Quaternion.identity));
+                GameObject mons = Instantiate(Resources.Load<GameObject>("Enemy/Monster_1"), positions[UnityEngine.Random.Range(0, 4)], Quaternion.identity);
+                monster.Add(mons);
+                List<SpriteSkinSwapper> monsterSprites = mons.GetComponentsInChildren<SpriteSkinSwapper>().ToList();
+
+                foreach (Item.ItemType itype in new List<Item.ItemType> { Item.ItemType.body, Item.ItemType.head, Item.ItemType.leg, Item.ItemType.shield, Item.ItemType.weapon })
+                {
+                    var itempart = m.Item.FirstOrDefault(it => it.type == itype);
+                    var targetParts = monsterSprites.Where(a => a.partType == itype);
+                    foreach (var part in targetParts)
+                        part.SwapSkin(itempart?.serial);
+                }
+                
             }
         }
 
@@ -99,8 +109,9 @@ public class GameManager : Singleton<GameManager>
         player = Instantiate(Resources.Load<GameObject>("Player/Player"), new Vector3(-4.12f, -4f), Quaternion.identity).GetComponent<PlayerController>();
         player.InitStatus(s.maxhp, (int)s.atk, s.atkspd, s.mvspd, 7.5f, (int)s.def, (int)s.atkrng);
 
-        List<SpriteSkinSwapper> playerSprites = player.GetComponentsInChildren<SpriteSkinSwapper>().ToList();
+
         //swap sprites in character
+        List<SpriteSkinSwapper> playerSprites = player.GetComponentsInChildren<SpriteSkinSwapper>().ToList();
         foreach (Item.ItemType itype in new List<Item.ItemType> { Item.ItemType.body, Item.ItemType.head, Item.ItemType.leg, Item.ItemType.shield, Item.ItemType.weapon })
         {
             var itempart = InventoryManager.Instance.EquippedItems.FirstOrDefault(i => i.type == itype);
@@ -108,6 +119,8 @@ public class GameManager : Singleton<GameManager>
             foreach (var part in targetParts)
                 part.SwapSkin(itempart?.serial);
         }
+
+
         isClear = false;
         isFail = false;
         isEvent = false;
@@ -115,7 +128,8 @@ public class GameManager : Singleton<GameManager>
     public void CleanupBattle()
     {
         RemoveMonster();
-        Destroy(player.gameObject);
+        if(player.gameObject != null)
+            Destroy(player.gameObject);
     }
 
     // 몬스터 스폰 좌표 설정
@@ -142,9 +156,10 @@ public class GameManager : Singleton<GameManager>
     public void ClearEvent()
     {
         //창 띄워서 가는게 어떨까
+        ConfirmDeleverUI.Instance.Refresh();
         UISupervisor.Instance.ActivateUI(UISupervisor.UIViews.ConfirmDelever);
         CleanupBattle();
-        
+
         Debug.Log("퀘스트 완료");
     }
 

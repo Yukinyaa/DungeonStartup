@@ -83,8 +83,8 @@ public class BtnFunctions : MonoBehaviour
                     eq.Any(a => a.type == Item.ItemType.head) &&
                     eq.Any(a => a.type == Item.ItemType.leg))
                     {
-                        UISupervisor.Instance.ActivateUI(UISupervisor.UIViews.ConfirmDelever);
                         ConfirmDeleverUI.Instance.Refresh();
+                        UISupervisor.Instance.ActivateUI(UISupervisor.UIViews.ConfirmDelever);
                     }
                         
                 break;
