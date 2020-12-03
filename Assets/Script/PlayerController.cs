@@ -43,8 +43,8 @@ public class PlayerController: MonoBehaviour
         anim            = GetComponent<Animator>();
         audioSource     = GetComponent<AudioSource>();
         rigid           = GetComponent<Rigidbody2D>();
-        hpBar = GameObject.FindObjectOfType<HpBar>().GetComponent<Image>();
-        manager = GameObject.FindObjectOfType<GameManager>();
+        hpBar           = GameObject.FindObjectOfType<HpBar>().GetComponent<Image>();
+        manager         = GameObject.FindObjectOfType<GameManager>();
 
         attacked        = false;
         isJump          = false;
@@ -137,9 +137,6 @@ public class PlayerController: MonoBehaviour
         this.jumpForce = jumpForce;
         this.defense = defense;
         this.boxSize.x = this.boxSize.x * ((100f + attackReach) / 100f);
-
-
-
     }
 
     // Damage Effect
