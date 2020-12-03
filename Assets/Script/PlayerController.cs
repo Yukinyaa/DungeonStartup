@@ -137,6 +137,7 @@ public class PlayerController: MonoBehaviour
         this.jumpForce = jumpForce;
         this.defense = defense;
         this.boxSize.x = this.boxSize.x * ((100f + attackReach) / 100f);
+        hpBar.fillAmount = (nowHp / maxHp);
     }
 
     // Damage Effect
